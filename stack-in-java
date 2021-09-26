@@ -1,0 +1,99 @@
+public class stackJava {
+    private int top;
+    private int size_of_stack;
+    private int[] stack;
+
+    public stackJava(int size)
+    {
+        stack = new int[size];
+        size_of_stack=size;
+        top = -1;
+    }
+
+    public int size()
+    {
+        return top+1;
+    }
+
+    public boolean check_if_full()
+    {
+        return size() == size_of_stack;
+    }
+
+    public boolean check_if_empty()
+    {
+        return size() == 0;
+    }
+
+    public void print_stack()
+    {
+        if(!check_if_empty()){
+            System.out.println("The stack is ");
+            for(int i=top;i>=0;i--)
+            {
+                System.out.println(stack[i]);
+            }
+        }
+    }
+
+    public void push(int x)
+    {
+        if(check_if_full()){
+            System.out.println("Stack Overflow");
+            System.exit(1);
+        }
+        else
+        {
+            System.out.println("Pushing "+x);
+            stack[++top]=x;
+        }
+    }
+
+    public void pop()
+    {
+        if(check_if_empty())
+        {
+            System.out.println("Stack is empty");
+            System.exit(1);
+        }
+        else
+        {
+            System.out.println("Popping " + top());
+            top = top -1;
+        }
+    }
+    public int top()
+    {
+        if(!check_if_empty())
+        {
+            return stack[top];
+        }
+        else
+        {
+            System.out.println("Stack is empty");
+            return 0;
+        }
+    }
+}
+
+public class driverStack {
+    public static void main(String[] args) {
+        stackJava stj = new stackJava(3);
+
+        stj.push(1);
+        stj.push(2);
+        stj.push(3);
+        stj.print_stack();
+
+        stj.pop();
+        System.out.println("Topmost element at present "+stj.top());
+
+        System.out.println("Size of the stack " + stj.size());
+
+        stj.pop();
+        stj.pop();
+        stj.pop();
+
+
+    }
+}
